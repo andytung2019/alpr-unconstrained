@@ -90,7 +90,7 @@ set -e
 python vehicle-detection.py $input_dir $output_dir
 
 # Detect license plates
-python license-plate-detection.py $output_dir $lp_model
+#python license-plate-detection.py $output_dir $lp_model
 
 # OCR
 #python license-plate-ocr.py $output_dir
@@ -99,7 +99,7 @@ python license-plate-detection.py $output_dir $lp_model
 #python gen-outputs.py $input_dir $output_dir > $csv_file
 
 # Clean files and draw output
-#rm $output_dir/*_lp.png
+rm $output_dir/*_lp.png
 rm $output_dir/*car.png
 rm $output_dir/*_cars.txt
 rm $output_dir/*_lp.txt
