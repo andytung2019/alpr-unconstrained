@@ -47,6 +47,8 @@ if __name__ == '__main__':
 			R = [r for r in R if r[0] in ['car','bus']]
 
 			print '\t\t%d cars found' % len(R)
+			for r in R:
+				print r
 
 			if len(R):
 
@@ -63,9 +65,12 @@ if __name__ == '__main__':
 					Icar = crop_region(Iorig,label)
 
 					Lcars.append(label)
-					print 'cx,cy,w,h:%f,%f,%f,%f' % cx,cy,w,h
-					print 'label tl:%f,%f' % tl[0], tl[1]
-					print 'label br:%f,%f' % br[0], br[1]
+					print cx
+					print cy
+					print w
+					print h
+					print tl
+					print br 
 
 					cv2.imwrite('%s/%s_%dcar.png' % (output_dir,bname,i),Icar)
 
