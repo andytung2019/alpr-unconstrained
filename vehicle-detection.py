@@ -55,7 +55,7 @@ if __name__ == '__main__':
 				Lcars = []
 
 				for i,r in enumerate(R):
-
+					
 					cx,cy,w,h = (np.array(r[2])/np.concatenate( (WH,WH) )).tolist()
 					tl = np.array([cx - w/2., cy - h/2.])
 					br = np.array([cx + w/2., cy + h/2.])
@@ -63,8 +63,11 @@ if __name__ == '__main__':
 					Icar = crop_region(Iorig,label)
 
 					Lcars.append(label)
+					print 'cx,cy,w,h:%f,%f,%f,%f' %cx,cy,w,h
+					print 'label tl:%f,%f' % tl[0], tl[1]
+					print 'label br:%f,%f' % br[0], br[1]
 
-					#cv2.imwrite('%s/%s_%dcar.png' % (output_dir,bname,i),Icar)
+					cv2.imwrite('%s/%s_%dcar.png' % (output_dir,bname,i),Icar)
 
 				lwrite('%s/%s_cars.txt' % (output_dir,bname),Lcars)
 
