@@ -100,7 +100,7 @@ python license-plate-detection.py $output_dir $lp_model
 
 # Clean files and draw output
 #rm $output_dir/*_lp.png
-rm $output_dir/*car.png
+#rm $output_dir/*car.png
 rm $output_dir/*_cars.txt
 rm $output_dir/*_lp.txt
 rm $output_dir/*_str.txt
