@@ -34,8 +34,8 @@ class MyCheck:
 			self.imgs_paths = image_files_from_folder(self.input_dir)
 			self.imgs_paths.sort()
 
-			if not isdir(self.output_dir):
-				makedirs(self.output_dir)
+			#if not isdir(self.output_dir):
+			#	makedirs(self.output_dir)
 		except:
 			traceback.print_exc()
 			sys.exit(1)
