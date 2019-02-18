@@ -63,7 +63,7 @@ if __name__ == '__main__':
 					Icar = crop_region(Iorig,label)
 
 					Lcars.append(label)
-					print 'cx,cy,w,h:%f,%f,%f,%f' %cx,cy,w,h
+					print 'cx,cy,w,h:%f,%f,%f,%f' % cx,cy,w,h
 					print 'label tl:%f,%f' % tl[0], tl[1]
 					print 'label br:%f,%f' % br[0], br[1]
 
