@@ -11,7 +11,7 @@ from os 					import makedirs
 from src.utils 				import crop_region, image_files_from_folder
 from darknet.python.darknet import detect
 
-class MyCheck:
+class MyCheck(object):
 	def __init__(self):
 		self.list_out = []
 		self.list_pic = []
@@ -93,7 +93,8 @@ class MyCheck:
 			tm_end = time.clock()
 			#print("image from %d->%d time:%d", start, end, tm_end-tm_start)
 
-mycheck = MyCheck()
+mycheck =new MyCheck()
+
 mycheck.get_pic_list()
 mycheck.detect_all_pic(10)
 mycheck.write_to_csv()
