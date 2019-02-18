@@ -42,7 +42,6 @@ class MyCheck:
 
 		sys.exit(0)
 
-	#保存所有图片到列表
 	def get_pic_list(self):
 		pic_subfix = ['jpg', 'JPG', 'JPEG', 'jpeg', 'png']
 		path = '/content/images'
@@ -56,7 +55,6 @@ class MyCheck:
 					self.list_pic.append(dit)
 		print 'get pic list:%d' % len(self.list_pic)
 
-	#检测小批量图片：10
 	def detect_pic_list(self, list_path):
 		for f_path in list_path:
 			pic_name = f_path[0]
@@ -76,7 +74,6 @@ class MyCheck:
 				writer.writerow({'image_name':r['image_name'], 'class':r['class'],'percent':r['percent'], 'rois_a': int(r['rois'][0]), 'rois_b':int(r['rois'][1]), 'rois_c':int(r['rois'][2]), 'rois_d':int(r['rois'][3])})
 
 
-	#检测所有图片
 	def detect_all_pic(self):
 		print "img list len:%d" % len(self.list_pic)
 
