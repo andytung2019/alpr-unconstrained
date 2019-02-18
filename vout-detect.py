@@ -93,7 +93,7 @@ class MyCheck(object):
 			tm_end = time.clock()
 			#print("image from %d->%d time:%d", start, end, tm_end-tm_start)
 
-mycheck =new MyCheck()
+mycheck = MyCheck()
 
 mycheck.get_pic_list()
 mycheck.detect_all_pic(10)
