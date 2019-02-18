@@ -80,7 +80,6 @@ class MyCheck:
 		start = 0
 		end = 0
 		while start < len(self.list_pic):
-			#估算时间
 			tm_start = time.clock()
 			list_path = []
 			
