@@ -31,7 +31,7 @@ class MyCheck:
 			self.vehicle_net  = dn.load_net(self.vehicle_netcfg, self.vehicle_weights, 0)
 			self.vehicle_meta = dn.load_meta(self.vehicle_dataset)
 
-			self.imgs_paths = image_files_from_folder(input_dir)
+			self.imgs_paths = image_files_from_folder(self.input_dir)
 			self.imgs_paths.sort()
 
 			if not isdir(self.output_dir):
