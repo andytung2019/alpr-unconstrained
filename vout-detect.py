@@ -11,7 +11,7 @@ from os 					import makedirs
 from src.utils 				import crop_region, image_files_from_folder
 from darknet.python.darknet import detect
 
-class MyCheck():
+class MyCheck:
 	def __init__(self):
 		self.list_out = []
 		self.list_pic = []
