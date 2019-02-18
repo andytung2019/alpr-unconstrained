@@ -71,9 +71,10 @@ class MyCheck(object):
 			pic_name = f_path[0]
 			image = skimage.io.imread(f_path[1])
 			R,_ = detect(self.vehicle_net, self.vehicle_meta, f_path[1] ,thresh=self.vehicle_threshold)
-			R = [r for r in R if r[0] in ['car','bus','pickup truck','truck']]
+			R = [r for r in R if r[0] in ['car','bus','work_van','non_motorized_vehicle','pickup_truck','articulated_truck', 'single_unit_truck']]
 			if len(R):
-				self.list_out.append({'image_name':pic_name, 'class':r[0],'percent':r[1],'rois': r[2]})
+				for r in R:
+					self.list_out.append({'image_name':pic_name, 'class':r[0],'percent':r[1],'rois': r[2]})
 
 
 	def write_to_csv(self):
@@ -95,7 +96,7 @@ class MyCheck(object):
 			list_path = []
 			
 			start = end
-			end = start + 10
+			end = start + 1000
 			if end >= len(self.list_pic):
 				end = len(self.list_pic)
 			for idx in range(start, end):
