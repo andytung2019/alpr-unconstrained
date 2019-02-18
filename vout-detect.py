@@ -107,6 +107,6 @@ class MyCheck(object):
 mycheck = MyCheck()
 
 mycheck.get_pic_list()
-mycheck.detect_all_pic(10)
+mycheck.detect_pic_list(10)
 mycheck.write_to_csv()
 
