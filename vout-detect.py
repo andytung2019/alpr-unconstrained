@@ -35,16 +35,15 @@ class MyCheck:
 			self.imgs_paths.sort()
 
 			if not isdir(self.output_dir):
-			makedirs(self.output_dir)
+				makedirs(self.output_dir)
 		except:
 			traceback.print_exc()
 			sys.exit(1)
 
 		sys.exit(0)
 
-
-           #保存所有图片到列表
-    def get_pic_list(self):
+	#保存所有图片到列表
+	def get_pic_list(self):
 		pic_subfix = ['jpg', 'JPG', 'JPEG', 'jpeg', 'png']
 		path = '/content/images'
 		path = os.path.expanduser(path)
@@ -52,18 +51,17 @@ class MyCheck:
 			for f in subfile:
 				sufix = os.path.splitext(f)[1][1:]
 				if sufix in pic_subfix:
-                	path = os.path.join(dirname, f)
-                	dit= (f, path)
-                	self.list_pic.append(dit)
-		print 'get pic list:%d',% len(self.list_pic)
+					path = os.path.join(dirname, f)
+					dit= (f, path)
+					self.list_pic.append(dit)
+		print 'get pic list:%d' % len(self.list_pic)
 
 	#检测小批量图片：10
 	def detect_pic_list(self, list_path):
-
-    	for f_path in list_path:
-        	pic_name = f_path[0]
-        	image = skimage.io.imread(f_path[1])
- 			R,_ = detect(self.vehicle_net, self.vehicle_meta, f_path[1] ,thresh=self.vehicle_threshold)
+		for f_path in list_path:
+			pic_name = f_path[0]
+			image = skimage.io.imread(f_path[1])
+			R,_ = detect(self.vehicle_net, self.vehicle_meta, f_path[1] ,thresh=self.vehicle_threshold)
 			R = [r for r in R if r[0] in ['car','bus','pickup truck','truck']]
 			if len(R):
 				self.list_out.append({'image_name':pic_name, 'class':r[0],'percent':r[1],'rois': r[2]})
@@ -71,11 +69,11 @@ class MyCheck:
 
 	def write_to_csv(self):
 		with open(r'out.csv', 'a') as out_csv:
-		fields = ['image_name', 'class','percent','rois_a', 'rois_b','rois_c', 'rois_d']
+			fields = ['image_name', 'class','percent','rois_a', 'rois_b','rois_c', 'rois_d']
 			for i in range(len(self.list_out)):
 				r = self.list_out[i]
 				writer = csv.DictWriter(out_csv, fieldnames=fields)
-				writer.writerow({'image_name':r['image_name'], 'class':r['class'],'percent':r['percent'], 'rois_a': (int)r['rois'][0], 'rois_b':(int)r['rois'][1], 'rois_c':(int)r['rois'][2], 'rois_d':(int)r['rois'][3]})
+				writer.writerow({'image_name':r['image_name'], 'class':r['class'],'percent':r['percent'], 'rois_a': int(r['rois'][0]), 'rois_b':int(r['rois'][1]), 'rois_c':int(r['rois'][2]), 'rois_d':int(r['rois'][3])})
 
 
 	#检测所有图片
