@@ -40,7 +40,6 @@ class MyCheck(object):
 			traceback.print_exc()
 			sys.exit(1)
 
-		sys.exit(0)
 
 	def get_pic_list(self):
 		pic_subfix = ['jpg', 'JPG', 'JPEG', 'jpeg', 'png']
