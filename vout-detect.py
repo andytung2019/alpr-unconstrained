@@ -95,7 +95,7 @@ class MyCheck(object):
 			R = [r for r in R if r[0] in ['car','bus','work_van','non_motorized_vehicle','pickup_truck','articulated_truck', 'single_unit_truck']]
 			if len(R):
 				list_b = []
-				for r in R
+				for r in R:
 					list_b.append(r[2])
 				dict_a = {'image_name':pic_name, 'rois': list_b}
 				self.list_out.append(dict_a)
