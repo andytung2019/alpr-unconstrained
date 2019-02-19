@@ -66,6 +66,27 @@ class MyCheck(object):
 					self.list_pic.append(dit)
 		print 'get pic list:%d' % len(self.list_pic)
 
+
+	def detect_pic_list_moi(self, list_path):
+		for f_path in list_path:
+			pic_name = f_path[0]
+			image = skimage.io.imread(f_path[1])
+			R,_ = detect(self.vehicle_net, self.vehicle_meta, f_path[1] ,thresh=self.vehicle_threshold)
+			R = [r for r in R if r[0] in ['car','bus','work_van','non_motorized_vehicle','pickup_truck','articulated_truck', 'single_unit_truck']]
+			if len(R):
+				list_a = {'image_name':pic_name}
+				for r in R
+					self.list_out.append({'image_name':pic_name, 'class':r[0],'percent':r[1],'rois': r[2]})
+
+
+	def write_to_csv_moi(self):
+		with open(r'out.csv', 'a') as out_csv:
+			fields = ['image_name', 'class','percent','rois_a', 'rois_b','rois_c', 'rois_d']
+			for i in range(len(self.list_out)):
+				r = self.list_out[i]
+				writer = csv.DictWriter(out_csv, fieldnames=fields)
+				writer.writerow({'image_name':r['image_name'], 'class':r['class'],'percent':r['percent'], 'rois_a': int(r['rois'][0]), 'rois_b':int(r['rois'][1]), 'rois_c':int(r['rois'][2]), 'rois_d':int(r['rois'][3])})
+	
 	def detect_pic_list(self, list_path):
 		for f_path in list_path:
 			pic_name = f_path[0]
@@ -73,19 +94,21 @@ class MyCheck(object):
 			R,_ = detect(self.vehicle_net, self.vehicle_meta, f_path[1] ,thresh=self.vehicle_threshold)
 			R = [r for r in R if r[0] in ['car','bus','work_van','non_motorized_vehicle','pickup_truck','articulated_truck', 'single_unit_truck']]
 			if len(R):
-				for r in R:
-					self.list_out.append({'image_name':pic_name, 'class':r[0],'percent':r[1],'rois': r[2]})
+				list_b = []
+				for r in R
+					list_b.append(r[2])
+				dict_a = {'image_name':pic_name, 'rois': list_b}
+				self.list_out.append(dict_a)
 
 
 	def write_to_csv(self):
 		with open(r'out.csv', 'a') as out_csv:
-			fields = ['image_name', 'class','percent','rois_a', 'rois_b','rois_c', 'rois_d']
+			fields = ['image_name', 'rois']
 			for i in range(len(self.list_out)):
 				r = self.list_out[i]
 				writer = csv.DictWriter(out_csv, fieldnames=fields)
-				writer.writerow({'image_name':r['image_name'], 'class':r['class'],'percent':r['percent'], 'rois_a': int(r['rois'][0]), 'rois_b':int(r['rois'][1]), 'rois_c':int(r['rois'][2]), 'rois_d':int(r['rois'][3])})
-
-
+				writer.writerow({'image_name':r['image_name'], ‘rois':r['rois']})
+				
 	def detect_all_pic(self):
 		print "img list len:%d" % len(self.list_pic)
 
@@ -96,7 +119,7 @@ class MyCheck(object):
 			list_path = []
 			
 			start = end
-			end = start + 1000
+			end = start + 100
 			if end >= len(self.list_pic):
 				end = len(self.list_pic)
 			for idx in range(start, end):
