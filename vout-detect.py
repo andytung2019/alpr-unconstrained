@@ -75,7 +75,7 @@ class MyCheck(object):
 			R = [r for r in R if r[0] in ['car','bus','work_van','non_motorized_vehicle','pickup_truck','articulated_truck', 'single_unit_truck']]
 			if len(R):
 				list_a = {'image_name':pic_name}
-				for r in R
+				for r in R:
 					self.list_out.append({'image_name':pic_name, 'class':r[0],'percent':r[1],'rois': r[2]})
 
 
