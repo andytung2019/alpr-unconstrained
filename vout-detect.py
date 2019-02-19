@@ -107,7 +107,7 @@ class MyCheck(object):
 			for i in range(len(self.list_out)):
 				r = self.list_out[i]
 				writer = csv.DictWriter(out_csv, fieldnames=fields)
-				writer.writerow({'image_name':r['image_name'], ‘rois':r['rois']})
+				writer.writerow({'image_name':r['image_name'], 'rois':r['rois']})
 				
 	def detect_all_pic(self):
 		print "img list len:%d" % len(self.list_pic)
